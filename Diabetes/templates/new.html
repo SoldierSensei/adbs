@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patients with Heart Disease</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #f5f5f5;
+		}
+		.card {
+			margin-bottom: 1rem;
+		}
+		.card-header {
+			background-color: #007bff;
+			color: white;
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 1.2rem;
+			padding: 0.5rem 1rem;
+			border-bottom: 0;
+		}
+		.card-body {
+			padding: 1rem;
+		}
+		.card-title {
+			font-size: 1.1rem;
+			margin-bottom: 0.5rem;
+		}
+		.card-text {
+			font-size: 0.9rem;
+			margin-bottom: 0.2rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 offset-md-2 mt-5">
+				<h1 class="text-center mb-4">Patients with Heart Disease</h1>
+				<div class="text-center">
+				    <button class="btn btn-primary" onclick="location.reload()">Click to see other patient</button>
+				</div>
+				{% for patient in patients %}
+					<div class="card">
+						<div class="card-header">{{ patient[0] }} (ID: {{ patient[1] }})</div>
+						<div class="card-body">
+							<h5 class="card-title">Age: {{ patient[2] }}</h5>
+							<p class="card-text">Sex: {{ patient[3] }}</p>
+							<p class="card-text">Chest Pain Type: {{ patient[4] }}</p>
+							<p class="card-text">Resting Blood Pressure: {{ patient[5] }}</p>
+							<p class="card-text">Serum Cholesterol: {{ patient[6] }}</p>
+							<p class="card-text">Fasting Blood Sugar: {{ patient[7] }}</p>
+							<p class="card-text">Resting ECG: {{ patient[8] }}</p>
+							<p class="card-text">Max Heart Rate: {{ patient[9] }}</p>
+							<p class="card-text">Exercise Induced Angina: {{ patient[10] }}</p>
+							<p class="card-text">ST Depression: {{ patient[11] }}</p>
+							<p class="card-text">Slope of ST Segment: {{ patient[12] }}</p>
+							<p class="card-text">Num Major Vessels: {{ patient[13] }}</p>
+							<p class="card-text">Thalassemia: {{ patient[14] }}</p>
+							<p class="card-text">Prediction: {{ patient[15] }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

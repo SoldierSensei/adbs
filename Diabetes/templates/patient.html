@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Patients with Disease</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	
+</head>
+
+<body style="background-image: url('./owen-beard-DK8jXx1B-1c-unsplash.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 offset-md-2 mt-5">
+				<div class="form-group">
+					<input type="text" class="form-control" id="searchBar" onkeyup="searchPatients()"
+						placeholder="Search patients...">
+				</div>
+				<h1 class="text-center mb-4">Patients with Heart Disease</h1>
+				<div class="text-center">
+				    <button class="btn btn-primary" onclick="location.reload()">Click to see other patient</button>
+				</div>
+				{% for patient in patients %}
+				<div class="card patient-card">
+					<div class="card-header">
+						<span>{{ patient[0] }} (ID: {{ patient[1] }})</span>
+						<button class="btn btn-primary float-right" onclick="showDetails({{ patient[1] }})">Show
+							Details</button>
+					</div>
+					<div class="card-body" id="details_{{ patient[1] }}" style="display: none;">
+						<h5 class="card-title">Age: {{ patient[2] }}</h5>
+						<p class="card-text">Sex: {{ patient[3] }}</p>
+						<p class="card-text">Chest Pain Type: {{ patient[4] }}</p>
+						<p class="card-text">Resting Blood Pressure: {{ patient[5] }}</p>
+						<p class="card-text">Serum Cholesterol: {{ patient[6] }}</p>
+						<p class="card-text">Fasting Blood Sugar: {{ patient[7] }}</p>
+						<p class="card-text">Resting ECG: {{ patient[8] }}</p>
+						<p class="card-text">Max Heart Rate: {{ patient[9] }}</p>
+						<p class="card-text">Exercise Induced Angina: {{ patient[10] }}</p>
+						<p class="card-text">ST Depression: {{ patient[11] }}</p>
+						<p class="card-text">Slope of ST Segment: {{ patient[12] }}</p>
+						<p class="card-text">Num Major Vessels: {{ patient[13] }}</p>
+						<p class="card-text">Thalassemia: {{ patient[14] }}</p>
+						<p class="card-text">Prediction: {{ patient[15] }}</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<script>
+		function showDetails(id) {
+			var detailsDiv = document.getElementById("details_" + id);
+			if (detailsDiv.style.display === "none") {
+				detailsDiv.style.display = "block";
+			} else {
+				detailsDiv.style.display = "none";
+			}
+		}
+
+		function searchPatients() {
+			// Declare variables
+			var input, filter, cards, cardContainer, patientName, i;
+			input = document.getElementById("searchBar");
+			filter = input.value.toUpperCase();
+			cardContainer = document.getElementsByClassName("col-md-8 offset-md-2 mt-5")[0];
+			cards = cardContainer.getElementsByClassName("patient-card");
+
+			// Loop through all patient cards, and hide those who don't match the search query
+			for (i = 0; i < cards.length; i++) {
+				patientName = cards[i].getElementsByTagName("span")[0];
+				if (patientName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+					cards[i].style.display = "";
+				} else {
+					cards[i].style.display = "none";
+				}
+			}
+		}
+	</script>
+</body>
+
+</html
